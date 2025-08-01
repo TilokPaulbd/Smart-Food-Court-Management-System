@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     private String orderId;
@@ -56,7 +57,7 @@ public class Order {
         items.add(item);
     }
     
-    public double getToatalAmount(){
+    public double getTotalAmount(){
         double total=0.0;
         
         for(OrderItem i : items){
@@ -93,10 +94,16 @@ public class Order {
 
         for (int i = 1; i < parts.length; i++) {
             if (!parts[i].isEmpty()) {
-                order.addItem(OrderItem.fromString(parts[i], menu));
+                String[] itemParts = parts[i].split(",");
+                FoodItem item = menu.stream()
+                                  .filter(f -> f.getId().equals(itemParts[0]))
+                                  .findFirst()
+                                  .orElse(null);
+                if (item != null) {
+                    order.addItem(new OrderItem(item, Integer.parseInt(itemParts[1])));
+                }
             }
         }
-
         return order;
     }
 }
