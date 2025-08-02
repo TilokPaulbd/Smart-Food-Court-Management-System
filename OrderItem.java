@@ -32,8 +32,7 @@ public class OrderItem {
     public double getTotalAmount(){
         return foodItem.getPrice()*quantity;
     }
-
    
-   
+    
 
 }

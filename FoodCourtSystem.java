@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.classfile.BufWriter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
@@ -181,7 +178,6 @@ public class FoodCourtSystem {
 
 
 
-
         orderHistory.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(ORDERS_FILE))) {
             String line;
@@ -238,7 +234,7 @@ public class FoodCourtSystem {
                     case 5: return;
                     default: System.out.println("Invalid choice! Please enter 1-5.");
                 }
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 System.out.println("Invalid input! Please enter a number (1-5).");
                 scanner.nextLine();
             }
@@ -323,7 +319,7 @@ public class FoodCourtSystem {
 
 
 
-    
+
 
     public static void main(String[] args) {
         loadData();

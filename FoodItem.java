@@ -1,7 +1,7 @@
 public class FoodItem {
     private String id;
     private String name;
-    private double price;
+    double price;
     private int quantity;
 
     public FoodItem(String id,String name,double price,int quantity){

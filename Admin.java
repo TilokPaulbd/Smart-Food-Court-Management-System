@@ -1,10 +1,9 @@
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Admin extends User{
-    private static final String password="meem"; 
+    private static final String ADMIN_PASSWORD = "meem"; 
     
     public Admin(String id,String name){
         super(id,name);
@@ -19,8 +18,8 @@ public class Admin extends User{
         System.out.println("5. Exit");
     }
 
-    public static boolean checkPassword(String password){
-        return password.equals(password);
+    public static boolean checkPassword(String ADMIN_PASSWORD){
+        return ADMIN_PASSWORD.equals(ADMIN_PASSWORD);
     }
 
     public void addFoodItem(Scanner scanner,ArrayList<FoodItem>menu){
