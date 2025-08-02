@@ -26,7 +26,7 @@ public class FoodCourtSystem {
 
     public static void displayMenu(){
         System.out.println("\nCurrent menu :");
-        System.out.printf("%d-5s %-20s %-10s %-5s\n","ID","Name","Price","Qty");
+        System.out.printf("%-5s %-20s %-10s %-5s\n", "ID", "Name", "Price", "Qty");
         for (FoodItem foodItem : menu) {
             System.out.printf("%-5s %-20s $%-8.2f %-5d\n", foodItem.getId(), foodItem.getName(), foodItem.getPrice(), foodItem.getQuantity());
         }
