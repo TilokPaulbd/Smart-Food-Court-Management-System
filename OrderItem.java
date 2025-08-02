@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 
 public class OrderItem {
     private FoodItem foodItem;
@@ -26,11 +26,14 @@ public class OrderItem {
     }
 
     public double getPrice(){
-        return foodItem.price;
+        return foodItem.getPrice();
     }
 
     public double getTotalAmount(){
         return foodItem.getPrice()*quantity;
     }
+
    
+   
+
 }
