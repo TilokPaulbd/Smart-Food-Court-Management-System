@@ -92,18 +92,51 @@ public class Order {
         order.orDateTime = LocalDateTime.parse(mainParts[2], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         order.isPaid = Boolean.parseBoolean(mainParts[3]);
 
+
+
         for (int i = 1; i < parts.length; i++) {
-            if (!parts[i].isEmpty()) {
-                String[] itemParts = parts[i].split(",");
-                FoodItem item = menu.stream()
-                                  .filter(f -> f.getId().equals(itemParts[0]))
-                                  .findFirst()
-                                  .orElse(null);
-                if (item != null) {
-                    order.addItem(new OrderItem(item, Integer.parseInt(itemParts[1])));
+
+            String item = parts[i];
+
+            if(!item.isEmpty()){
+             String[] itemParts = item.split(",");
+
+                if (itemParts.length != 2) {
+
+                  System.out.println("Invalid item format: " + item);
+                  continue;
+
                 }
+
+                String foodId = itemParts[0];
+                String qtyStr = itemParts[1];
+
+                FoodItem matchedTFoodItem=null;
+                
+                for (FoodItem f : menu) {
+                    if(f.getId().equals(foodId)){
+                        matchedTFoodItem=f;
+                        break;
+                    }
+                }
+
+                if (matchedTFoodItem==null) {
+                    System.err.println("Food item not found for ID: " + foodId);
+                    continue;
+                }
+
+                try {
+                    int quantity =Integer.parseInt(qtyStr);
+                    order.addItem(new OrderItem(matchedTFoodItem, quantity));
+                } catch (Exception e) {
+                    System.out.println("Invalid quantity !");
+                }
+
             }
+
         }
+
+        
         return order;
     }
 }
