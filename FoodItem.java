@@ -38,7 +38,7 @@ public class FoodItem {
 
     public static FoodItem fromString(String str){
         String[] parts=str.split(",");
-        return new FoodItem(parts[0], parts[1],Double.parseDouble(parts[2]), Integer.parseInt(parts[4]));
+        return new FoodItem(parts[0], parts[1],Double.parseDouble(parts[2]), Integer.parseInt(parts[3]));
     }
 
     public String toString(){
