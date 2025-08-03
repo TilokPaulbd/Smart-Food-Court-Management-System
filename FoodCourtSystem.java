@@ -23,7 +23,7 @@ public class FoodCourtSystem {
 
     public static void displayMenu(){
         System.out.println("\nCurrent menu :");
-        System.out.printf("%-5s %-20s %-10s %-100s\n", "ID", "Name", "Price", "Qty");
+        System.out.printf("%-5s %-20s %-10s %-5s\n", "ID", "Name", "Price", "Qty");
         for (FoodItem foodItem : menu) {
             System.out.printf("%-5s %-20s %-8.2fTaka %-5d\n", foodItem.getId(), foodItem.getName(), foodItem.getPrice(), foodItem.getQuantity());
         }
@@ -120,7 +120,7 @@ public class FoodCourtSystem {
 
 
     public static void saveData(){
-        try(BufferedWriter writer=new BufferedWriter(new FileWriter(MENU_FILE,true))){
+        try(BufferedWriter writer=new BufferedWriter(new FileWriter(MENU_FILE))){
             for (FoodItem foodItem : menu) {
                 writer.write(foodItem.toString());
                 writer.newLine();
@@ -138,7 +138,7 @@ public class FoodCourtSystem {
 
 
 
-        try (BufferedWriter writer=new BufferedWriter(new FileWriter(ORDERS_FILE,true))){
+        try (BufferedWriter writer=new BufferedWriter(new FileWriter(ORDERS_FILE))){
 
             for (Order order : orderHistory) {
                 writer.write(order.toString());
