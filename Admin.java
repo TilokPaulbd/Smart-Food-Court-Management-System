@@ -18,8 +18,8 @@ public class Admin extends User{
         System.out.println("5. Exit");
     }
 
-    public static boolean checkPassword(String ADMIN_PASSWORD){
-        return ADMIN_PASSWORD.equals(ADMIN_PASSWORD);
+    public static boolean checkPassword(String PASSWORD){
+        return ADMIN_PASSWORD.equals(PASSWORD);
     }
 
     public void addFoodItem(Scanner scanner,ArrayList<FoodItem>menu){

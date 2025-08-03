@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -301,12 +302,17 @@ public class FoodCourtSystem {
 
 
     public static void adminLogin(Scanner scanner){
+
+        Console console =System.console();
+        
         System.out.print("Enter admin ID: ");
         String id = scanner.next();
         System.out.print("Enter admin name: ");
         String name = scanner.next();
         System.out.print("Enter admin password: ");
-        String password = scanner.next();
+        
+        char[] passwordChar=console.readPassword();
+        String password = new String(passwordChar);
 
         if (Admin.checkPassword(password)) {
             Admin admin = new Admin(id, name);
