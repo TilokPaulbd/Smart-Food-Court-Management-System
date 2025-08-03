@@ -260,7 +260,7 @@ public class FoodCourtSystem {
 
                 switch (choice) {
                     case 1: admin.addFoodItem(scanner, menu); break;
-                    case 2: admin.inreaseItemQuantity(scanner, menu); break;
+                    case 2:admin.viewAllItems(menu);admin.inreaseItemQuantity(scanner, menu); break;
                     case 3: admin.viewAllItems(menu); break;
                     case 4: admin.viewOrderHistory(orderHistory); break;
                     case 5: return;
