@@ -85,9 +85,9 @@ public class Admin extends User{
                 System.out.println("Items :");
 
                 for (OrderItem item : order.getItems()) {
-                    System.out.printf("  %-20s x%-5d $%-8.2f\n", item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
+                    System.out.printf("  %-20s x%-5d %-8.2fTaka\n", item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
                 }
-                System.out.println("Total Amount: $" + String.format("%.2f", order.getTotalAmount()));
+                System.out.println("Total Amount: " + String.format("%.2f", order.getTotalAmount()+"Taka"));
                 System.out.println("Status: " + (order.isPaid() ? "Paid" : "Pending"));
                 System.out.println("-----------------------------");
 

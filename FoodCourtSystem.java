@@ -25,7 +25,7 @@ public class FoodCourtSystem {
         System.out.println("\nCurrent menu :");
         System.out.printf("%-5s %-20s %-10s %-5s\n", "ID", "Name", "Price", "Qty");
         for (FoodItem foodItem : menu) {
-            System.out.printf("%-5s %-20s $%-8.2f %-5d\n", foodItem.getId(), foodItem.getName(), foodItem.getPrice(), foodItem.getQuantity());
+            System.out.printf("%-5s %-20s %-8.2fTaka %-5d\n", foodItem.getId(), foodItem.getName(), foodItem.getPrice(), foodItem.getQuantity());
         }
     }
 
@@ -82,7 +82,7 @@ public class FoodCourtSystem {
             System.out.println("\nCurrent Order:");
             System.out.println("Items:");
             for (OrderItem item : currentOrder.getItems()) {
-                System.out.printf("  %-20s x%-5d $%-8.2f\n", 
+                System.out.printf("  %-20s x%-5d %-8.2fTaka\n", 
                     item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
             }
             System.out.println("Total Amount: Taka" + String.format("%.2f", currentOrder.getTotalAmount()));
@@ -120,11 +120,13 @@ public class FoodCourtSystem {
 
 
     public static void saveData(){
-        try(BufferedWriter writer=new BufferedWriter(new FileWriter(MENU_FILE))){
+        try(BufferedWriter writer=new BufferedWriter(new FileWriter(MENU_FILE,true))){
             for (FoodItem foodItem : menu) {
                 writer.write(foodItem.toString());
                 writer.newLine();
+                
             }
+            writer.close();
 
             System.out.println("Menu saved successfully with " + menu.size() + " items.");
 
@@ -136,12 +138,14 @@ public class FoodCourtSystem {
 
 
 
-        try (BufferedWriter writer=new BufferedWriter(new FileWriter(ORDERS_FILE))){
+        try (BufferedWriter writer=new BufferedWriter(new FileWriter(ORDERS_FILE,true))){
 
             for (Order order : orderHistory) {
                 writer.write(order.toString());
                 writer.newLine();
             }
+            writer.close();
+
             System.out.println("Order history saved successfully with " + orderHistory.size() + " orders.");
 
 
@@ -159,8 +163,8 @@ public class FoodCourtSystem {
 
 
     public static void loadData(){
-        menu.clear();
 
+        menu.clear();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(MENU_FILE))) {
             String line;
