@@ -82,14 +82,18 @@ public class Admin extends User{
                 System.out.println("Order ID :"+order.getOrderId());
                 System.out.println("Student ID:"+order.getStrudentId());
                 System.out.println("Order Date :"+order.getOrDateTime().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss")));
-                System.out.println("Items :");
-
+                
+                
                 try{
+                /*    
+                    System.out.println("Items :");
 
                 for (OrderItem item : order.getItems()) {
                     System.out.printf("  %-20s x%-5d %-8.2fTaka\n", item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
                 }
                 System.out.println("Total Amount: " + String.format("%.2f Taka", order.getTotalAmount()));
+                */
+
                 System.out.println("Status: " + (order.isPaid() ? "Paid" : "Pending"));
                 System.out.println("-----------------------------");
                 }catch(Exception e){
