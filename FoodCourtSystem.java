@@ -77,16 +77,20 @@ public class FoodCourtSystem {
     public static void viewCurrentOrder(Student student){
         Order currentOrder=student.getCurrentOrder();
 
+        double total=0;
+
         if (currentOrder == null || currentOrder.getItems().isEmpty()) {
             System.out.println("No items in current order.");
         } else {
             System.out.println("\nCurrent Order:");
             System.out.println("Items:");
             for (OrderItem item : currentOrder.getItems()) {
-                System.out.printf("  %-20s x%-5d %-8.2fTaka\n", 
-                    item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
+
+                System.out.printf("  %-20s x%-5d %-8.2f Taka\n", 
+                item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
+                total+=item.getTotalAmount();
             }
-            System.out.println("Total Amount: Taka" + String.format("%.2f", currentOrder.getTotalAmount()));
+            System.out.println("Total Amount: " + String.format("%.2f", total)+" Taka");
         }
        
     }
