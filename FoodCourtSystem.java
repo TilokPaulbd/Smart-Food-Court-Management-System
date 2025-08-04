@@ -97,8 +97,6 @@ public class FoodCourtSystem {
 
 
 
-
-
     public static void checkOut(Student student){
         Order currentOrder=student.getCurrentOrder();
 
@@ -190,6 +188,7 @@ public class FoodCourtSystem {
         orderHistory.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(ORDERS_FILE))) {
             String line;
+            
             while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     orderHistory.add(Order.fromString(line, menu));
