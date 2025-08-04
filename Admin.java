@@ -24,14 +24,14 @@ public class Admin extends User{
 
     public void addFoodItem(Scanner scanner,ArrayList<FoodItem>menu){
         try{
-            System.out.println("Enter Food Number :");
+            System.out.print("Enter Food Number :");
             String id=scanner.next();
             scanner.nextLine();
-            System.out.println("Enter Food Name :");
+            System.out.print("Enter Food Name :");
             String name=scanner.nextLine();
-            System.out.println("Enter Food Price :");
+            System.out.print("Enter Food Price :");
             double price =scanner.nextDouble();
-            System.out.println("Enter Quantity :");
+            System.out.print("Enter Quantity :");
             int quantity=scanner.nextInt();
 
             menu.add(new FoodItem(id, name, price, quantity));

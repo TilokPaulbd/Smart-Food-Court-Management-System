@@ -336,7 +336,9 @@ public class FoodCourtSystem {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nWelcome to Food Court Management System");
+            System.out.println("---------------------------------------------");
+            System.out.println("Welcome to Food Court Management System");
+            System.out.println("---------------------------------------------");
             System.out.println("1. Admin Login");
             System.out.println("2. Customer Login");
             System.out.println("3. Exit");
