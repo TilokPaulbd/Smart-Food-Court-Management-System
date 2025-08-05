@@ -90,7 +90,7 @@ public class FoodCourtSystem {
                 item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
                 total+=item.getTotalAmount();
             }
-            System.out.println("Total Amount: " + String.format("%.2f", total)+" Taka");
+            System.out.println("\nTotal Amount: " + String.format("%.2f", total)+" Taka");
         }
        
     }
