@@ -20,9 +20,9 @@ public class Student extends User {
         if(currentOrder==null){
             startNewOrder();
         }
-        else{
-            currentOrder.addItem(new OrderItem(foodItem, quantity));
-        }
+        
+        currentOrder.addItem(new OrderItem(foodItem, quantity));
+        
     }
 
 
