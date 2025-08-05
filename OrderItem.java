@@ -22,7 +22,7 @@ public class OrderItem {
     }
 
     public String toString(){
-        return foodItem.getId()+","+foodItem.getQuantity();
+        return foodItem.getId()+","+quantity;
     }
 
     public double getPrice(){
