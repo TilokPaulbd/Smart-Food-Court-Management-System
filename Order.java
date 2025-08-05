@@ -33,7 +33,7 @@ public class Order {
         this.strudentId = strudentId;
     }
     public ArrayList<OrderItem> getItems() {
-        return items;
+        return this.items;
     }
     public void setItems(ArrayList<OrderItem> items) {
         this.items = items;
@@ -83,60 +83,53 @@ public class Order {
         return sb.toString();
     }
 
-        public static Order fromString(String str, ArrayList<FoodItem> menu) {
-        String[] parts = str.split(";");
-        String[] mainParts = parts[0].split(",");
-
-        Order order = new Order(mainParts[1]);
-        order.orderId = mainParts[0];
-        order.orDateTime = LocalDateTime.parse(mainParts[2], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        order.isPaid = Boolean.parseBoolean(mainParts[3]);
 
 
+    public static Order fromString(String str, ArrayList<FoodItem> menu) {
+        String[] parts = str.split(","); 
+    
+    
+        if (parts.length < 4) {
+        System.err.println("Invalid order format: " + str);
+        return null;
+        }
+    
+        Order order = new Order(parts[1]);
+        order.orderId = parts[0];
+        order.orDateTime = LocalDateTime.parse(parts[2], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        order.isPaid = Boolean.parseBoolean(parts[3]);
 
-        for (int i = 1; i < parts.length; i++) {
-
-            String item = parts[i];
-
-            if(!item.isEmpty()){
-             String[] itemParts = item.split(",");
-
-                if (itemParts.length != 2) {
-
-                  System.out.println("Invalid item format: " + item);
-                  continue;
-
-                }
-
-                String foodId = itemParts[0];
-                String qtyStr = itemParts[1];
-
-                FoodItem matchedTFoodItem=null;
-                
-                for (FoodItem f : menu) {
-                    if(f.getId().equals(foodId)){
-                        matchedTFoodItem=f;
-                        break;
-                    }
-                }
-
-                if (matchedTFoodItem==null) {
-                    System.err.println("Food item not found for ID: " + foodId);
-                    continue;
-                }
-
-                try {
-                    int quantity =Integer.parseInt(qtyStr);
-                    order.addItem(new OrderItem(matchedTFoodItem, quantity));
-                } catch (Exception e) {
-                    System.out.println("Invalid quantity !");
-                }
-
+ 
+        for (int i = 4; i < parts.length; i += 2) {
+            if (i + 1 >= parts.length) {
+               System.err.println("Incomplete item-quantity pair in order: " + str);
+               break;
             }
 
-        }
+            String foodId = parts[i];
+            String qtyStr = parts[i + 1];
 
-        
-        return order;
+            FoodItem matchedFoodItem = null;
+            for (FoodItem f : menu) {
+                if (f.getId().equals(foodId)) {
+                    matchedFoodItem = f;
+                    break;
+                }
+            }
+
+            if (matchedFoodItem == null) {
+                System.err.println("Food item not found for ID: " + foodId);
+                continue;
+            }
+
+            try {
+                int quantity = Integer.parseInt(qtyStr);
+                order.addItem(new OrderItem(matchedFoodItem, quantity));
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid quantity for item " + foodId + ": " + qtyStr);
+            } 
+        }
+    
+    return order;
     }
 }

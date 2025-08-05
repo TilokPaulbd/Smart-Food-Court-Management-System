@@ -85,7 +85,7 @@ public class Admin extends User{
                 
                 
                 try{
-                    /* 
+                    
                    
                     System.out.println("Items :");
 
@@ -94,7 +94,7 @@ public class Admin extends User{
                        System.out.printf("  %-20s x%-5d %-8.2fTaka\n", item.getFoodItem().getName(), item.getQuantity(), item.getTotalAmount());
                     }
                     System.out.println("Total Amount: " + String.format("%.2f Taka", order.getTotalAmount()));
-                     */
+                     
                 
 
                     System.out.println("Status: " + (order.isPaid() ? "Paid" : "Pending"));
